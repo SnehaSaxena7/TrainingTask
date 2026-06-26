@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Object Functions</title>
+</head>
+<body>
+
+<h2>JavaScript Object Functions</h2>
+
+<script>
+
+let student = {
+    name: "Sneha",
+    age: 21,
+    course: "MCA"
+};
+
+document.write("<h3>Original Object</h3>");
+document.write(JSON.stringify(student) + "<br><br>");
+
+document.write("<b>1. Object.keys(): </b>" + Object.keys(student) + "<br><br>");
+
+document.write("<b>2. Object.values(): </b>" + Object.values(student) + "<br><br>");
+
+document.write("<b>3. Object.entries(): </b>" + JSON.stringify(Object.entries(student)) + "<br><br>");
+
+let copy = Object.assign({}, student);
+document.write("<b>4. Object.assign(): </b>" + JSON.stringify(copy) + "<br><br>");
+
+document.write("<b>5. Object.hasOwn(): </b>" + Object.hasOwn(student, "name") + "<br><br>");
+
+document.write("<b>6. Object.getOwnPropertyNames(): </b>" + Object.getOwnPropertyNames(student) + "<br><br>");
+
+let obj1 = { city: "Delhi" };
+Object.freeze(obj1);
+obj1.city = "Noida";
+document.write("<b>7. Object.freeze(): </b>" + JSON.stringify(obj1) + "<br><br>");
+
+let obj2 = { country: "India" };
+Object.seal(obj2);
+obj2.country = "USA";
+obj2.state = "Delhi";
+document.write("<b>8. Object.seal(): </b>" + JSON.stringify(obj2) + "<br><br>");
+
+let newStudent = Object.create(student);
+document.write("<b>9. Object.create(): </b>" + newStudent.name + "<br><br>");
+
+let emp = Object.fromEntries([
+    ["id", 101],
+    ["department", "Computer"]
+]);
+
+document.write("<b>10. Object.fromEntries(): </b>" + JSON.stringify(emp));
+
+</script>
+
+</body>
+</html>
