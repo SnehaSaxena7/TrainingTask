@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bank Withdrawal Checker</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f0f5;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+  }
+  .container {
+    background: #fff;
+    padding: 30px;
+    width: 350px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background: #2196f3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  button:hover {
+    background: #1976d2;
+  }
+  #result {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Bank Withdrawal Checker</h2>
+
+  <label>Current Balance (₹)</label>
+  <input type="number" id="balance" placeholder="Enter balance">
+
+  <label>Withdrawal Amount (₹)</label>
+  <input type="number" id="amount" placeholder="Enter amount">
+
+  <label>Account Type</label>
+  <select id="accountType">
+    <option value="false">Regular</option>
+    <option value="true">Premium</option>
+  </select>
+
+  <button onclick="processWithdrawal()">Check Withdrawal</button>
+
+  <div id="result"></div>
+</div>
+
+<script>
+function processWithdrawal() {
+  const balance = parseFloat(document.getElementById('balance').value);
+  const amount = parseFloat(document.getElementById('amount').value);
+  const isPremium = document.getElementById('accountType').value === 'true';
+  const resultDiv = document.getElementById('result');
+
+  resultDiv.style.display = 'block';
+
+  if (isNaN(balance) || isNaN(amount) || balance < 0 || amount <= 0) {
+    resultDiv.style.background = '#fbe7e7';
+    resultDiv.style.color = '#b00020';
+    resultDiv.innerHTML = 'Please enter valid balance and amount.';
+    return;
+  }
+
+  // Premium account ka minimum balance 0, Regular ka ₹1000
+  const minBalance = isPremium ? 0 : 1000;
+
+  if (amount > balance - minBalance) {
+    resultDiv.style.background = '#fbe7e7';
+    resultDiv.style.color = '#b00020';
+    resultDiv.innerHTML = ` Insufficient funds. Minimum balance required: ₹${minBalance}`;
+    return;
+  }
+
+  const newBalance = balance - amount;
+  resultDiv.style.background = '#d4edda';
+  resultDiv.style.color = '#1c7a30';
+  resultDiv.innerHTML = `Withdrawn ₹${amount}. Balance: ₹${newBalance}`;
+}
+</script>
+
+</body>
+</html>
