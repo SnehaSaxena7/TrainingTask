@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Class & Remove Class</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <style>
+        .box{
+            width:200px;
+            height:200px;
+            background:red;
+            margin:20px;
+        }
+
+        .newclass{
+            border:8px solid blue;
+            border-radius:20px;
+            background:green;
+        }
+
+        button{
+            padding:10px 20px;
+            margin:10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box"></div>
+
+<button id="add">Add Class</button>
+<button id="remove">Remove Class</button>
+
+<script>
+$(document).ready(function(){
+
+    $("#add").click(function(){
+        $(".box").addClass("newclass");
+    });
+
+    $("#remove").click(function(){
+        $(".box").removeClass("newclass");
+    });
+
+});
+</script>
+
+</body>
+</html>
