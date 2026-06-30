@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>jQuery Effects</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<style>
+body{
+    font-family: Arial;
+    text-align:center;
+    margin-top:40px;
+}
+button{
+    padding:10px 15px;
+    margin:5px;
+    background:blue;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+#box{
+    width:200px;
+    height:200px;
+    background:red;
+    margin:20px auto;
+}
+</style>
+
+<script>
+$(document).ready(function(){
+
+    $("#hide").click(function(){
+        $("#box").hide();
+    });
+
+    $("#show").click(function(){
+        $("#box").show();
+    });
+
+    $("#toggle").click(function(){
+        $("#box").toggle();
+    });
+
+    $("#slideup").click(function(){
+        $("#box").slideUp();
+    });
+
+    $("#slidedown").click(function(){
+        $("#box").slideDown();
+    });
+
+    $("#fadein").click(function(){
+        $("#box").fadeIn();
+    });
+
+    $("#fadeout").click(function(){
+        $("#box").fadeOut();
+    });
+
+    $("#animate").click(function(){
+        $("#box").animate({
+            width:"300px",
+            height:"300px",
+            opacity:"0.5"
+        });
+    });
+
+});
+</script>
+
+</head>
+
+<body>
+
+<button id="hide">Hide</button>
+<button id="show">Show</button>
+<button id="toggle">Toggle</button>
+<button id="slideup">Slide Up</button>
+<button id="slidedown">Slide Down</button>
+<button id="fadein">Fade In</button>
+<button id="fadeout">Fade Out</button>
+<button id="animate">Animate</button>
+
+<div id="box"></div>
+
+</body>
+</html>
