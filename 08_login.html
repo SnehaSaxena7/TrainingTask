@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation Form</title>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- jQuery Validate -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js"></script>
+</head>
+<body>
+<form id="frm">
+    <table>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" name="myname"></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="text" name="myemail"></td>
+        </tr>
+        <tr>
+            <td>Age</td>
+            <td><input type="text" name="myage"></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input type="password" name="mypass" id="pass"></td>
+        </tr>
+        <tr>
+            <td>Confirm Password</td>
+            <td><input type="password" name="cmypass"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Submit"></td>
+        </tr>
+    </table>
+</form>
+<script>
+$(document).ready(function () {
+    $.validator.addMethod("pwcheck", function (value, element) {
+        return /^[A-Za-z0-9=!@._*-]+$/.test(value)
+            && /[a-z]/.test(value)
+            && /\d/.test(value);
+    }, "Password must contain at least one lowercase letter and one digit.");
+    $("#frm").validate({
+        rules: {
+            myname: {
+                required: true
+            },
+            myemail: {
+                required: true,
+                email: true
+            },
+            myage: {
+                required: true,
+                min: 18,
+                max: 60
+            },
+            mypass: {
+                required: true,
+                pwcheck: true,
+                minlength: 8
+            },
+            cmypass: {
+                required: true,
+                equalTo: "#pass"
+            }
+        },
+        messages: {
+            myname: {
+                required: "This field is required."
+            },
+            myemail: {
+                required: "Email is required.",
+                email: "Enter a valid email."
+            },
+            myage: {
+                required: "Age is required.",
+                min: "Minimum age is 18.",
+                max: "Maximum age is 60."
+            },
+            mypass: {
+                required: "Password is required.",
+                minlength: "Minimum 8 characters.",
+                pwcheck: "Password must contain a lowercase letter and a digit."
+            },
+            cmypass: {
+                required: "Confirm your password.",
+                equalTo: "Passwords do not match."
+            }
+        }
+    });
+});
+</script>
+</body>
+</html>
