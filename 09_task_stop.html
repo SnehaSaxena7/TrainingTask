@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id="sw">
+        00 : 00 : 00
+    </div>
+    <ol id="laps">
+    <button id="st">Start</button>
+    <button id="sp">Stop</button>
+    <button id="rs">Reset</button>
+    <button id="lp">Lap</button>
+
+</body>
+<script>
+        let hh=0;
+        let mm=0;
+        let ss=0;
+    $(document).ready(function(){
+        //alert("start");
+        id=setInterval(updatesw,1000);
+    });
+    $('#st').click(function(){
+        id=setInterval(updatesw,1000);
+    });
+    $('#sp').click(function(){
+        clearInterval(id);
+    });
+    $('#rs').click(function(){
+        hh=0
+        mm=0
+        ss=0
+        clearInterval(id);
+        $('#sw').text(hh+" : "+mm+" : "+ss);
+        $('#laps').children('li').remove();
+    });
+    $('#lp').click(function(){
+        // alert("New Lap");
+        $('#laps').append('<li> '+hh+': '+mm+': '+ss+' </li>')
+    });
+    function updatesw(){
+        ss++;
+        if(ss>0==60){
+            mm++;
+            ss=0;
+        }
+        if(mm>=60){
+            hh++;
+            mm=0;
+            ss=0;
+        }
+        $('#sw').text(hh+" : "+mm+" : "+ss);{
+      }
+    }
+    </script>
+
+</html>
